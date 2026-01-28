@@ -8,7 +8,6 @@ y_train = train['meal']
 x_train = train.drop(columns=['meal', 'id'])
 
 test = pd.read_csv('https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3test.csv')
-y_test = test['meal']
 x_test = test.drop(columns=['meal', 'id'])
 
 x_train['DateTime'] = pd.to_datetime(x_train['DateTime'])
