@@ -30,12 +30,12 @@ param_dist = {
     'learning_rate': [0.01, 0.1, 0.25, 0.5, 0.75, 1]
 }
 
-xgb = XGBClassifier()
+model = XGBClassifier()
 
-xgb_tuned = RandomizedSearchCV(xgb, param_dist, n_iter=100, n_jobs=-1, cv=3)
+model = RandomizedSearchCV(xgb, param_dist, n_iter=100, n_jobs=-1, cv=3)
 
-xgb_tuned.fit(x_train, y_train)
+model.fit(x_train, y_train)
 
-modelFit = xgb_tuned.best_estimator_
+modelFit = model.best_estimator_
 
 pred = modelFit.predict(x_test)
