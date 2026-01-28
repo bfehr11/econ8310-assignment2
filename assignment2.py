@@ -32,7 +32,7 @@ param_dist = {
 
 model = XGBClassifier()
 
-model = RandomizedSearchCV(xgb, param_dist, n_iter=100, n_jobs=-1, cv=3)
+model = RandomizedSearchCV(model, param_dist, n_iter=100, n_jobs=-1, cv=3)
 
 model.fit(x_train, y_train)
 
