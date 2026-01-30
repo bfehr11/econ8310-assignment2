@@ -40,7 +40,7 @@ def tjurr(truth, pred):
     y2 = np.mean([y for x, y in enumerate(pred) if truth[x]==0])
     return y1-y2
 
-tjurr_scorer = make_scorer(tjurr, greater_is_better=True, needs_proba=True)
+tjurr_scorer = make_scorer(tjurr, greater_is_better=True, response_method="predict_proba")
 
 model_tuned = RandomizedSearchCV(model, param_dist, scoring=tjurr_scorer, n_iter=50, n_jobs=1, cv=2, error_score='raise')
 
