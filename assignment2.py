@@ -46,6 +46,8 @@ model_tuned = RandomizedSearchCV(model, param_dist, n_iter=100, n_jobs=-1, cv=3)
 
 model_tuned.fit(x_train, y_train)
 
-model = model_tuned.best_estimator_
+modelFit = model_tuned.best_estimator_
+
+model = modelFit
 
 pred = model.predict(x_test).tolist()
