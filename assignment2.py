@@ -41,7 +41,9 @@ def tjurr(truth, pred):
     y2 = np.mean([y for x, y in enumerate(pred) if truth[x]==0])
     return y1-y2
 
-tjurr_scorer = make_scorer(tjurr, greater_is_better=True, response_method="predict_proba")
+def tjurr_scorer(estimator, X, y):
+    proba = estimator.predict_proba(X)[:, 1]
+    return tjurr(y, proba)
 
 model_tuned = RandomizedSearchCV(model, param_dist, scoring=tjurr_scorer, n_iter=100, n_jobs=-1, cv=3)
 
@@ -51,4 +53,4 @@ modelFit = model_tuned.best_estimator_
 
 model = modelFit
 
-pred = model.predict(x_test).tolist()
+pred = model.predict_proba(x_test)[:, 1].tolist()
