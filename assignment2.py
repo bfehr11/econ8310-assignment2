@@ -42,7 +42,7 @@ def tjurr(truth, pred):
 
 tjurr_scorer = make_scorer(tjurr, greater_is_better=True, response_method="predict_proba")
 
-model_tuned = RandomizedSearchCV(model, param_dist, n_iter=100, n_jobs=-1, cv=3)
+model_tuned = RandomizedSearchCV(model, param_dist, scoring=tjurr_scorer, n_iter=100, n_jobs=-1, cv=3)
 
 model_tuned.fit(x_train, y_train)
 
