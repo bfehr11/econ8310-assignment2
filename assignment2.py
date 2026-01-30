@@ -45,7 +45,7 @@ def tjurr_scorer(estimator, X, y):
     proba = estimator.predict_proba(X)[:, 1]
     return tjurr(y, proba)
 
-model_tuned = RandomizedSearchCV(model, param_dist, scoring=tjurr_scorer, n_iter=100, n_jobs=-1, cv=3)
+model_tuned = RandomizedSearchCV(model, param_dist, n_iter=100, n_jobs=-1, cv=3)
 
 model_tuned.fit(x_train, y_train)
 
